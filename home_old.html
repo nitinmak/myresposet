@@ -1,30 +1,38 @@
-<!-- We don't need a full layout in this file because this page will be parsed with Ajax. -->
+<!DOCTYPE HTML>
+<html lang="en">
 
-<!-- Top Navbar-->
-<div class="navbar">
-    <div class="navbar-inner">
-        <div class="left">
-            <a href="#" class="back link">
-                <i class="icon icon-back"></i>
-                <span>Back</span>
-            </a>
-        </div>
-        <div class="center sliding">About</div>
-        <div class="right">
-            <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-        </div>
-    </div>
-</div>
-<div class="pages">
-    <div data-page="home" class="page">
-        <div class="page-content">
-            
-<!-- <div id="preloader" class="preloader-light">
+<!-- Mirrored from enableds.com/products/kolor3/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 16 Apr 2019 08:13:38 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+<title>Kolor | HTML, CSS & JS Mobile Template | Epsilon X </title>
+<link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+<link rel="stylesheet" type="text/css" href="styles/framework.css">
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+<link rel="stylesheet" href="styles/select2.min.css">
+<link rel="stylesheet" href="styles/intlTelInput.css">
+
+<style type="text/css">
+	.select2-container--default .select2-selection--multiple {
+    /*background-color: #07314a; /*#d49100*/
+    border-bottom:solid 1px rgba(0,0,0,.1);}
+
+.select2-container--default .select2-selection--multiple {  border-bottom:solid 1px rgba(0,0,0,.1);border-top: none;border-right: none;border-left: none;}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: solid rgba(0,0,0,.1) 1px;
+    outline: 0;
+}
+
+</style>
+</head>
+<body >
+<div id="preloader" class="preloader-light">
 <h1 class="center-text color-black ultrabold uppercase bottom-0 fa-2x">Kolor</h1>
 <div id="preload-spinner"></div>
 <p>Beautifully Crafted UI & UX.</p>
 <em>This will only take a second. It's totally worth it!</em>
-</div> -->
+</div>
 <div id="page-transitions" class="page-build">
 <div class="page-bg gradient-body-1"></div>
 <div class="header shadow-large header-light header-logo-app">
@@ -83,7 +91,7 @@ Simple input fileds for text, passwords, numbers or dates, with placeholders and
 </p> -->
 <div class="input-simple-1 has-icon input-green bottom-10">
 
-    <input type="text" id="name" name="name" placeholder="Type Receiver’s Name">
+	<input type="text" id="name" name="name" placeholder="Type Receiver’s Name">
    <input type="hidden" class="form-control"  id="language" name="language" >
    <input type="hidden" class="form-control"  id="referral" name="referral" >
    <input type="hidden" class="form-control"  id="user_id" name="user_id" >
@@ -159,7 +167,7 @@ Simple input fileds for text, passwords, numbers or dates, with placeholders and
 
 <div class="clear"></div>
 </div>
-    <div class="demo-buttons">
+	<div class="demo-buttons">
 
 <a href="#"  id="button"  class="button button-rounded button-teal-3d button-teal">More</a>
 <button type="reset" onclick="location.href='index.html'" id="button" class="button button-rounded button-green-3d button-green">Reset</button>
@@ -318,21 +326,25 @@ You can setup awesome notifications in a menu as well, add useful news and info 
 </div>
 <a href="#" class="back-to-top-badge back-to-top-small shadow-large bg-blue-dark"><i class="fa fa-angle-up"></i>Back to Top</a>
 </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    $(document).ready(function () {
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/plugins.js"></script>
+<script type="text/javascript" src="scripts/custom.js"></script>
+<script type="text/javascript" src="scripts/jquery.validate.js"></script>
 
-  $(function(){
+<script src="scripts/select2.min.js"></script>
+  <script src="scripts/intlTelInput.js"></script>
+  <script class="iti-load-utils" async="" src="scripts/utils.js?1537717752654"></script>
+
+<script type="text/javascript">
+	  $(function(){
   $("#menu-1").load("sidebar.html");
 });
-       $(".select2").select2({
+	   $(".select2").select2({
      'tags':true,
       placeholder: "Decide Segment"
       
     });
-           var input = document.querySelector("#mobile");
+	       var input = document.querySelector("#mobile");
     var a=window.intlTelInput(input, {
     initialCountry: "auto",
      geoIpLookup: function(success, failure) {
@@ -377,12 +389,12 @@ You can setup awesome notifications in a menu as well, add useful news and info 
 
     }
 
- //$("#menu-1").load("sidebar.html");
-      
+ $("#menu-1").load("sidebar.html");
+      $(document).ready(function () {
  var email =  window.localStorage.getItem("email");
                         // alert('fdfd');
                          
-  // $('#preloader').show();
+   $('#preloader').show();
                      $.ajax({
             url: "https://digitalbcards.in/api/user_profile/", 
             method: "POST",
@@ -402,7 +414,7 @@ You can setup awesome notifications in a menu as well, add useful news and info 
                 $('#user_image').css("background-image",'url(https://digitalbcards.in/upload/'+user_image+')');
                 $('#user_image').css("height",'80px');
                 $('#user_image').css("width",'80px');
-               //$('#preloader').hide();
+               $('#preloader').hide();
                 
               
             //location.reload();
@@ -435,9 +447,102 @@ $('#segment').html(data+'<small class="form-control-feedback"></small>');
             //location.reload();
           }
         })
-                 });
 
+             var user =  window.localStorage.getItem("user_id");
+             $('#user_id').val(user);
+             $('#language').val(language);
+             $('#referral').val(referral);
+             $('#user_name').val(name);
+        
 
+          $('#share_form').validate({ // initialize the plugin
+        errorLabelContainer: "#cs-error-note",
+   
+     errorClass: 'errors',
+    rules: {
+     
+        "segment[]": "required",
+       
+         name: {
+           
+            required: true,
+            
+        },
+        
+        
+        
+    },
+    messages: {
+       
+        "segment[]": "Please Select Segment",
+        
+         name: {
+           
+            required: "Please enter  Reciver Name.",
+            
+            
+        },
+        
+        
+       
+         
+    },
+        submitHandler: function (form) { // for demo
+          form =$('#share_form').serialize();
+         // alert(form);
+          var  action = $('#action').val();
+          var  email = $('#email').val();
+          $('#myOverlay').show();
+    $('#loadingGIF').show();
+     $.ajax({
+            url: "https://digitalbcards.in/api/send_whatsapp/",
+            method: "POST",
+            data:form, 
+            dataType:"json",            
+           
+            success: function(data) {
+               // alert(data);
+              if(data.status == 0){
+                 $('#toast').html(data.message);
+                tost();
+                // alert(data.message);
+              }else if(data.status == 2){
 
+                
+                // alert(data.message);
+                   $('#toast').html(data.message);
+                tost();
+            window.location.href = data.url;
+              }else{
+                $('#toast').html(data.message);
+                tost();
+              }
+            //location.reload();
+          }
+        })
+            return false; // for demo
+        }
+    }); 
+
+                //called when key is pressed in textbox
+              $("#mobile").keypress(function (e) {
+                 //if the letter is not digit then display error and don't type anything
+                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+                           return false;
+                }
+               });
+            });
+
+function tost(){
+
+$('#toast').addClass('show-toast');
+setTimeout(function(){ 
+$('#toast').removeClass('show-toast');
+ }, 1200);
+}
+               
 
 </script>
+</body>

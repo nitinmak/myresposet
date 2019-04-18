@@ -13,14 +13,116 @@ var mainView = myApp.addView('.view-main', {
 
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
+
+
+     $(".select2").select2({
+     'tags':true,
+      placeholder: "Decide Segment"
+      
+    });
     console.log("Device is ready!");
+    myApp.alert('Here comes login page');
+
+                //window.localStorage.setItem("login",0);
+
+    var islogin = window.localStorage.getItem("login");
+// alert(islogin); 
+
+if(islogin == 1){
+    $$('#home').trigger("click");
+ // window.location.href = "home.html"
+  }
+
+
+    $('#login_form').validate({ // initialize the plugin
+        errorLabelContainer: "#cs-error-note",
+   
+     errorClass: 'errors',
+    rules: {
+     
+       
+        email: {
+           
+            required: true,
+            email:true,
+            
+        },
+         password: {
+           
+            required: true,
+            
+        },
+        
+    },
+    messages: {
+       
+        
+         email: {
+           
+            required: "Please enter  Email.",
+            email:"Please Enter Proper Email",
+            
+        },
+         password: {
+           
+            required: "Please enter  Password.",
+            
+            
+        },
+        
+       
+         
+    },
+        submitHandler: function (form) { // for demo
+          form =$('#login_form').serialize();
+          var  action = $('#action').val();
+          var  email = $('#email').val();
+          $('#myOverlay').show();
+    $('#loadingGIF').show();
+     $.ajax({
+            url: "https://digitalbcards.in/api/login/", 
+            method: "POST",
+            data:form, 
+            dataType:"json",            
+           
+            success: function(data) {
+              if(data.status == 0){
+                   $('#icon').html('<i class="fa fa-exclamation font-30 icon-circle icon-l bg-white color-black shadow-icon-large"></i>');
+        $('#error_msg_title').html('Login Failed');            
+        $('#error_msg').html(data.message);            
+$('#attention').addClass('active-menu-box-modal');
+
+    
+                // alert(data.message);
+              }else{
+
+                window.localStorage.setItem("login",1);
+                window.localStorage.setItem("email",email);
+
+               // alert(data.message);
+                
+              // $('#home').click();
+              $('#icon').html('<i class="fa fa-check font-30 icon-circle icon-l color-green-dark bg-white shadow-icon-large"></i>');
+              $('#error_msg_title').html('Login Succes');            
+        $('#error_msg').html(data.message);            
+$('#attention').addClass('active-menu-box-modal');
+ // window.location.href = "home.html"
+  $$('#home').trigger("click");
+              }
+            //location.reload();
+          }
+        })
+            return false; // for demo
+        }
+    });
+
 });
 
 
 // Now we need to run the code that will be executed only for About page.
 
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
-myApp.onPageInit('about', function (page) {
+myApp.onPageInit('home', function (page) {
     // Do something here for "about" page
 
 })
@@ -30,14 +132,112 @@ $$(document).on('pageInit', function (e) {
     // Get page data from event data
     var page = e.detail.page;
 
-    if (page.name === 'about') {
+    if (page.name === 'home') {
         // Following code will be executed for page with data-page attribute equal to "about"
         myApp.alert('Here comes About page');
     }
 })
 
 // Option 2. Using live 'pageInit' event handlers for each page
-$$(document).on('pageInit', '.page[data-page="about"]', function (e) {
+$$(document).on('pageInit', '.page[data-page="home"]', function (e) {
     // Following code will be executed for page with data-page attribute equal to "about"
     myApp.alert('Here comes About page');
+
+    
+
+             var user =  window.localStorage.getItem("user_id");
+             $('#user_id').val(user);
+             $('#language').val(language);
+             $('#referral').val(referral);
+             $('#user_name').val(name);
+        
+
+          $('#share_form').validate({ // initialize the plugin
+        errorLabelContainer: "#cs-error-note",
+   
+     errorClass: 'errors',
+    rules: {
+     
+        "segment[]": "required",
+       
+         name: {
+           
+            required: true,
+            
+        },
+        
+        
+        
+    },
+    messages: {
+       
+        "segment[]": "Please Select Segment",
+        
+         name: {
+           
+            required: "Please enter  Reciver Name.",
+            
+            
+        },
+        
+        
+       
+         
+    },
+        submitHandler: function (form) { // for demo
+          form =$('#share_form').serialize();
+         // alert(form);
+          var  action = $('#action').val();
+          var  email = $('#email').val();
+          $('#myOverlay').show();
+    $('#loadingGIF').show();
+     $.ajax({
+            url: "https://digitalbcards.in/api/send_whatsapp/",
+            method: "POST",
+            data:form, 
+            dataType:"json",            
+           
+            success: function(data) {
+               // alert(data);
+              if(data.status == 0){
+                 $('#toast').html(data.message);
+                tost();
+                // alert(data.message);
+              }else if(data.status == 2){
+
+                
+                // alert(data.message);
+                   $('#toast').html(data.message);
+                tost();
+            window.location.href = data.url;
+              }else{
+                $('#toast').html(data.message);
+                tost();
+              }
+            //location.reload();
+          }
+        })
+            return false; // for demo
+        }
+    }); 
+
+                //called when key is pressed in textbox
+              $("#mobile").keypress(function (e) {
+                 //if the letter is not digit then display error and don't type anything
+                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+                           return false;
+                }
+               });
+    
+
+function tost(){
+
+$('#toast').addClass('show-toast');
+setTimeout(function(){ 
+$('#toast').removeClass('show-toast');
+ }, 1200);
+}
+    
 })
